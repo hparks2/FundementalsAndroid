@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
+    //Menu prompt
     static void mainMenuSetup() {
         System.out.println("Please choose an option:");
         System.out.println("(1) Add a task.");
@@ -14,6 +15,7 @@ public class Main {
         System.out.println("(0) Exit.");
     }
 
+    //For when the user selects a task
     static Task[] runSelectedTask(int selectedTask, Task[] tasks, Scanner scanner) {
         int index;
 
@@ -64,7 +66,9 @@ public class Main {
         }
         return tasks;
     }
-
+    //Menu option for listing by priority, also has try catch for when the user enters a letter for the priority.
+    //Also, if the user enters a number lower than 0 or greater than 5, it puts it at a 0 if it's lower than 0
+    //or it puts it at a 5 if it's greater than 5
     private static void listByPriority(Task[] tasks, Scanner scanner) {
         int priority;
 
@@ -99,7 +103,7 @@ public class Main {
         }
 
     }
-
+    //For when the user wants to update a task
     private static Task[] updateTask(Task[] tasks, Scanner scanner) {
 
         int index;
@@ -108,6 +112,7 @@ public class Main {
         String description;
         int priority;
 
+        //Has a try catch for a general error and if the user enters a letter
         try {
 
             System.out.println("Enter the index of the task to update.");
@@ -151,7 +156,7 @@ public class Main {
 
         return tasks;
     }
-
+    //Prompt for adding a new task
     private static Task[] addTask(Task[] tasks, Scanner scanner) {
 
         Task currentTask = new Task();
@@ -168,6 +173,7 @@ public class Main {
         description = scanner.nextLine();
         currentTask.setDescription(description);
 
+        //Has a try catch for the priority incase the user enters a letter instead of a number
         System.out.println("Enter a priority of the new task.");
         try {
             priority = Integer.parseInt(scanner.nextLine());
@@ -194,7 +200,7 @@ public class Main {
 
         return tasks;
     }
-
+    //For adding tasks
     static Task[] add(Task[] tasks, Task newTask) {
         Task[] newTasks = new Task[tasks.length + 1];
 
@@ -204,6 +210,7 @@ public class Main {
         newTasks[newTasks.length - 1] = newTask;
         return newTasks;
     }
+    //For removing tasks
     static Task[] remove(Task[] tasks, int index) {
         if(index >= 0 && index < tasks.length) {
             Task[] newTasks = new Task[tasks.length - 1];
@@ -219,11 +226,13 @@ public class Main {
             return tasks;
         }
     }
+    //For updating tasks
     static void update(Task[] tasks, int index, Task newTask) {
         if(index >= 0 && index < tasks.length) {
             tasks[index] = newTask;
         }
     }
+    //For listing all tasks
     static void list(Task[] tasks) {
         for(int i = 0; i < tasks.length; ++i) {
             System.out.println(i + ". " + tasks[i].getTitle() + " (Priority " + tasks[i].getPriority() + "): " + tasks[i].getDescription());
@@ -257,10 +266,6 @@ public class Main {
             {
                 System.out.println("Please enter a number.");
             }
-
         }
-
     }
-
 }
-
